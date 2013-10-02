@@ -129,7 +129,7 @@ public class LinkedList <T> implements LinkedListInterface <T> {
 		LinkedListNode<T> temp;
 		temp = list;
 		while (temp != null) {
-			if (temp.getClass().getName().equals("FoodItem"))	{
+			if (temp.getElement() instanceof FoodItem)	{
 				FoodItem fi = (FoodItem) temp.getElement();
 				out += fi.toString();
 			}
