@@ -1,3 +1,7 @@
+/**
+ * @author Sam
+ * Creates FoodItem
+ */
 public class FoodItem {
 	String name;
 	double price;
