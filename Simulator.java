@@ -1,6 +1,12 @@
-public class Simulator {
-	public void add(LinkedList<FoodItem> fi, String text, double p, int q, String d, double s, String so, String c)	{
-		fi.add(new FoodItem(text,p,q,d,s,so,c));
+import java.io.Serializable;
+
+public class Simulator implements Serializable {
+	private static final long serialVersionUID = 5160975073591039763L;
+	public void add(CategoryList<LinkedList<FoodItem>> fi, String text, double p, int q, String d, double s, String so, String c)	{
+		FoodItem element = new FoodItem(text,p,q,d,s,so,c);
+		LinkedList<FoodItem> list = new LinkedList<FoodItem>();
+		list.add(element);
+		fi.add(list);
 	}
 	public void remove(LinkedList<FoodItem> fi, String text)	{
 		try	{
