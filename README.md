@@ -1,4 +1,0 @@
-RestaurantVendor
-================
-
-Restaurant Vendor
