@@ -1,9 +1,13 @@
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * @author Sam
+ * Creates GUI
+ */
 public class GUI extends JPanel implements ActionListener {
 	LinkedList<FoodItem> foodItemList = new LinkedList<FoodItem>();
-	//CategoryList<String> categoryList = new CategoryList<String>();
+	CategoryList<LinkedList<FoodItem>> categoryList = new CategoryList<LinkedList<FoodItem>>();
 	protected JButton[] buttons = new JButton[7];
 	String[] buttonNames = {"Submit", "Add Item", "Remove Item", "Search for Item", "Update Item", "Check if List is Empty", "Print Items"};
 	String[] buttonCommands = {"submit", "add", "remove", "search", "update", "isEmpty", "print"};
@@ -25,6 +29,7 @@ public class GUI extends JPanel implements ActionListener {
 	String current_command = "";
 	Simulator helper = new Simulator();
 	String text = "";
+	String name = "";
 	double p = 0.0;
 	int q = 0;
 	String d = "";
@@ -35,6 +40,7 @@ public class GUI extends JPanel implements ActionListener {
 		textSubmitted = false;
 		current_command = "";
 		if (!foodItemList.containsName(text))	{
+			name = text;
 			System.out.println("Please enter the price of the product.");
 			current_command = "add1";
 		}
@@ -78,7 +84,8 @@ public class GUI extends JPanel implements ActionListener {
 		textSubmitted = false;
 		current_command = "";
 		c = text;
-		helper.add(foodItemList, text, p, q, d, s, so, c);
+		FoodItem f = new FoodItem(name,p,q,d,s,so,c);
+		foodItemList.add(f);
 	}
 	public void remove()	{
 		textSubmitted = false;
@@ -94,6 +101,7 @@ public class GUI extends JPanel implements ActionListener {
 		textSubmitted = false;
 		current_command = "";
 		if (foodItemList.containsName(text))	{
+			name = text;
 			System.out.println("Please enter the price of the product.");
 			current_command = "update1";
 		}
@@ -137,7 +145,7 @@ public class GUI extends JPanel implements ActionListener {
 		textSubmitted = false;
 		current_command = "";
 		c = text;
-		helper.update(foodItemList, text, p, q, d, s, so, c);
+		helper.update(foodItemList, name, p, q, d, s, so, c);
 	}
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
@@ -175,7 +183,7 @@ public class GUI extends JPanel implements ActionListener {
 				update_s();
 			else if (current_command.equals("update5"))
 				update_so();
-			else if (current_command.equals("update5"))
+			else if (current_command.equals("update6"))
 				update_c();
 		}
 		else if (command.equals(buttonCommands[1]))	{
